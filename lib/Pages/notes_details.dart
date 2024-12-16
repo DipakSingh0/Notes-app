@@ -18,12 +18,22 @@ class NotesDetails extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.deepPurple.shade100,
         appBar: AppBar(
+          backgroundColor: Colors.deepPurple,
+
           title: Text("N O T E S-D E T A I L S",
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               )),
           centerTitle: true,
+          actions: [
+            IconButton(
+                onPressed: () {
+                  print(note.id);
+                  dbController.deleteNotes(note.id!);
+                },
+                icon: Icon(Icons.delete))
+          ],
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -54,7 +64,6 @@ class NotesDetails extends StatelessWidget {
               ),
               TextFormField(
                 controller: dbController.descriptionDetail,
-                
                 decoration: InputDecoration(
                     hintText: "Title",
                     border: OutlineInputBorder(
@@ -71,6 +80,17 @@ class NotesDetails extends StatelessWidget {
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     )),
+              ),
+                SizedBox(
+                height: screenSize.height * 0.60,
+              ),
+
+              ElevatedButton(
+                onPressed: () async {
+                  dbController.updateNotes(note.id!);
+                  print("Updated");
+                },
+                child: Text("UPDATE"),
               ),
             ],
           ),

@@ -14,7 +14,9 @@ class NotesWidgets extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(NotesDetails(note: note,));
+        Get.to(NotesDetails(
+          note: note,
+        ));
       },
       child: Container(
           decoration: BoxDecoration(
